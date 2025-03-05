@@ -1,12 +1,3 @@
-data "aws_ami" "amazon_linux" {
-  most_recent = true
-  owners      = ["amazon"]
-
-  filter {
-    name   = "name"
-    values = ["amzn2-ami-hvm-*-x86_64-ebs"]
-  }
-}
 
 resource "aws_security_group" "bastion_sg" {
   name        = "gbenga-online-bastion-sg"
@@ -34,14 +25,15 @@ resource "aws_security_group" "bastion_sg" {
 }
 
 resource "aws_instance" "bastion" {
-  ami                         = data.aws_ami.amazon_linux.id
-  instance_type               = "t3.micro"
+  ami                         = "ami-05b10e08d247fb927"
+  instance_type               = "t2.micro"
   subnet_id                   = var.public_subnets[0]
   key_name                    = var.key_name
   associate_public_ip_address = true
-  security_groups             = [aws_security_group.bastion_sg.name]
+  vpc_security_group_ids      = [aws_security_group.bastion_sg.id]
 
   tags = {
     Name = "gbenga-online-bastion"
   }
 }
+

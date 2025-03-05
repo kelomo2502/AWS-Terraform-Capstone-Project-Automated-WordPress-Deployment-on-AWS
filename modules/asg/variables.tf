@@ -22,23 +22,47 @@ variable "instance_type" {
   type        = string
 }
 
-variable "user_data" {
-  description = "User data script to install and configure WordPress"
-  type        = string
-  default     = <<EOF
-#!/bin/bash
-yum update -y
-amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
-yum install -y httpd mariadb-server
-systemctl start httpd
-systemctl enable httpd
-cd /var/www/html
-wget https://wordpress.org/latest.tar.gz
-tar -xzf latest.tar.gz --strip-components=1
-EOF
-}
-
 variable "alb_sg_id" {
   description = "ALB security group ID for allowing traffic"
+  type        = string
+}
+
+variable "bastion_sg" {
+  description = "Bastion Host security group ID for allowing traffic"
+  type        = string
+}
+
+variable "efs_id" {
+  description = "EfS id"
+  type        = string
+}
+
+variable "aws_region" {
+  description = "Provider region"
+  type        = string
+}
+
+variable "rds_endpoint" {
+  description = "RDS endpoint"
+  type        = string
+}
+variable "db_name" {
+  description = "The name of the database for WordPress"
+  type        = string
+}
+
+variable "db_user" {
+  description = "The username for the WordPress database"
+  type        = string
+}
+
+variable "db_password" {
+  description = "The password for the WordPress database"
+  type        = string
+  sensitive   = true
+}
+
+variable "db_host" {
+  description = "RDS endpoint"
   type        = string
 }

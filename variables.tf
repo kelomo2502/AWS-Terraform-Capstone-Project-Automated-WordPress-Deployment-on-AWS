@@ -27,23 +27,24 @@ variable "azs" {
 variable "key_name" {
   description = "EC2 Key Pair name for SSH access"
   type        = string
-  default     = "my-key"
+  default     = "Jenkins_server"
 }
 
 variable "ami_id" {
   description = "AMI ID for the WordPress EC2 instances"
   type        = string
+  default     = "ami-05b10e08d247fb927"
 }
 
 variable "instance_type" {
   description = "EC2 instance type for WordPress servers"
   type        = string
-  default     = "t3.micro"
+  default     = "t2.micro"
 }
 
-variable "db_username" {
-  default = "admin"
-}
+# variable "db_username" {
+#   default = "admin"
+# }
 
 variable "db_password" {
   description = "RDS MySQL password"
@@ -52,6 +53,7 @@ variable "db_password" {
 }
 
 variable "db_name" {
+  type    = string
   default = "wordpressdb"
 }
 
@@ -60,3 +62,13 @@ variable "domain_name" {
   type        = string
   default     = "gbenga.online"
 }
+
+
+
+variable "db_user" {
+  description = "The WordPress database username"
+  type        = string
+  default     = "admin"
+}
+
+

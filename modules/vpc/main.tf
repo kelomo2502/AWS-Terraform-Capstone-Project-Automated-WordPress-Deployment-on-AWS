@@ -66,7 +66,7 @@ resource "aws_route_table_association" "public" {
 # Elastic IPs for NAT Gateways
 resource "aws_eip" "nat" {
   count = length(aws_subnet.public)
-  vpc   = true
+  domain = "vpc"
 
   tags = {
     Name = "gbenga-online-nat-${count.index}"
