@@ -139,6 +139,20 @@ resource "aws_autoscaling_group" "wordpress_asg" {
 
 ---
 
+### 7. Route 53 Configuration
+
+**Objective:**
+
+- Configure Route 53 for domain name resolution, ensuring seamless access to the WordPress site.
+
+**Steps:**
+
+- Create a hosted zone and register a domain (or use an existing one).
+- Configure an alias record pointing to the Application Load Balancer.
+- Set TTL values for optimal performance.
+
+**Instructions for Terraform:**
+
 ## Deployment Steps
 
 1. Clone this repository:
